@@ -21,6 +21,7 @@ func TestFormatter_FormatSchema(t *testing.T) {
 	const testSourceDir = "./testdata/source/schema"
 	const testBaselineDir = "./testdata/baseline/FormatSchema"
 
+	// exec golden test
 	executeGoldenTesting(t, &goldenConfig{
 		SourceDir: testSourceDir,
 		BaselineFileName: func(cfg *goldenConfig, f os.DirEntry) string {
@@ -59,6 +60,7 @@ func TestFormatter_FormatSchemaDocument(t *testing.T) {
 	const testSourceDir = "./testdata/source/schema"
 	const testBaselineDir = "./testdata/baseline/FormatSchemaDocument"
 
+	// exec golden test
 	executeGoldenTesting(t, &goldenConfig{
 		SourceDir: testSourceDir,
 		BaselineFileName: func(cfg *goldenConfig, f os.DirEntry) string {

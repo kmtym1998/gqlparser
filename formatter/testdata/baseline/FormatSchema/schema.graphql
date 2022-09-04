@@ -1,41 +1,52 @@
-schema {
-	query: TopQuery
-	mutation: TopMutation
-	subscription: TopSubscription
-}
-type TopMutation {
-	noop: Boolean
-	noop2(
-		"""noop2 foo bar"""
-		arg: String
-	): Boolean
-	noop3(
-		"""noop3 foo bar"""
-		arg: String
-	): Boolean
-}
-type TopQuery {
-	noop: Boolean
-	noop2(
-		"""noop2 foo bar"""
-		arg: String
-	): Boolean
-	noop3(
-		"""noop3 foo bar"""
-		arg: String
-	): Boolean
-}
-type TopSubscription {
-	noop: Boolean
-	noop2(
-		"""noop2 foo bar"""
-		arg: String
-	): Boolean
-	noop3(
-		"""noop3 foo bar"""
-		arg1: String
+# `FormatSchema` drops schema {} clause
 
-		"""noop3 foo bar"""
-		arg2: String
-	): Boolean
+type Continent {
+	code: ID!
+	countries: [Country!]!
+	name: String!
+}
+type Country {
+	capital: String
+	code: ID!
+	continent: Continent!
+	currency: String
+	emoji: String!
+	emojiU: String!
+	languages: [Language!]!
+	name: String!
+	native: String!
+	phone: String!
+	states: [State!]!
+}
+input CountryFilterInput {
+	code: StringQueryOperatorInput
+	continent: StringQueryOperatorInput
+	currency: StringQueryOperatorInput
+}
+type Language {
+	code: ID!
+	name: String
+	native: String
+	rtl: Boolean!
+}
+input LanguageFilterInput {
+	code: StringQueryOperatorInput
+}
+type Query {
+	continent(code: ID!): Continent
+	countries(filter: CountryFilterInput): [Country!]!
+	languages(filter: LanguageFilterInput): [Language!]!
+}
+type State {
+	code: String
+	country: Country!
+	name: String!
+}
+input StringQueryOperatorInput {
+	eq: String
+	glob: String
+	in: [String]
+	ne: String
+	nin: [String]
+	regex: String
 }
